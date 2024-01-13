@@ -5,7 +5,7 @@
     personal: "{{ lookup('env', 'HOME') }}/personal"
     work: "{{ lookup('env', 'HOME') }}/work"
   pre_tasks:
-    - name: DNF Update
+    - name: update dnf
       become: true
       dnf:
         update_cache: true
@@ -14,12 +14,21 @@
         - install
         - core
   tasks:
-    - name: Include SSH tasks
+    - name: setup ssh
       include_tasks:
         file: tasks/ssh.yml
-    - name: Include GIT tasks
+    - name: setup git
       include_tasks:
         file: tasks/git-setup.yml
-    - name: Include ZSH tasks
+    - name: setup zsh
       include_tasks:
         file: tasks/zsh-setup.yml
+    - name: setup personal projects
+      include_tasks:
+        file: tasks/personal-projects.yml
+    - name: setup dotfiles
+      include_tasks:
+        file: tasks/dotfiles.yml
+    - name: developer productivity
+      include_tasks:
+        file: tasks/dotfiles.yml

@@ -1,0 +1,7 @@
+- name: install packages
+  become: true
+  apt:
+    name: [ "tmux", "fzf", "xclip" ]
+  tags:
+    - install
+    - productivity

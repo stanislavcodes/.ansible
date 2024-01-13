@@ -1,42 +1,42 @@
-- name: Git personal setup email
+- name: git personal setup email
   git_config:
     name: user.email
     scope: global
-    value: "stanislav.codes@gmail.com"
+    value: 'stanislav.codes@gmail.com'
   tags:
-  - git-personal
-- name: Git personal setup name
+    - git-personal
+- name: git personal setup name
   git_config:
     name: user.name
     scope: global
-    value: "Stanislav Korchevskyi"
+    value: 'Stanislav Korchevskyi'
   tags:
-  - git-personal
-- name: Git JSN setup email
+    - git-personal
+- name: git jsn setup email
   git_config:
     name: user.email
     scope: global
-    value: "stanislav.k.jsn@gmail.com"
+    value: 'stanislav.k.jsn@gmail.com'
   tags:
-  - git-jsn
-- name: Git JSN setup name
+    - git-jsn
+- name: git jsn setup name
   git_config:
     name: user.name
     scope: global
-    value: "Stanislav Korchevskyi"
+    value: 'Stanislav Korchevskyi'
   tags:
-  - git-jsn
-- name: Git MRW setup email
+    - git-jsn
+- name: git mrw setup email
   git_config:
     name: user.email
     scope: global
-    value: "stanislav.k@myrunway.co.za"
+    value: 'stanislav.k@myrunway.co.za'
   tags:
-  - git-mrw
-- name: Git MRW setup name
+    - git-mrw
+- name: git mrw setup name
   git_config:
     name: user.name
     scope: global
-    value: "mpaulson"
+    value: 'Stanislav Korchevskyi'
   tags:
-  - git-mrw
+    - git-mrw

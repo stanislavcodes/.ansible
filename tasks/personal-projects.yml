@@ -1,0 +1,39 @@
+- name: Advent Of Code exists
+  stat:
+    path: "{{ personal }}/advent-of-code"
+  register: advent-of-code
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  
+- name: Personal Project Advent Of Code
+  ansible.builtin.git:
+    repo: 'git@github.com:stanislavcodes/advent-of-code.git'
+    bare: true
+    dest: "{{ personal }}/advent-of-code"
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: advent-of-code.stat.exists == False
+
+- name: Advent Of Code exists
+  stat:
+    path: "{{ personal }}/advent-of-code"
+  register: advent-of-code
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  
+- name: Personal Project Advent Of Code
+  ansible.builtin.git:
+    repo: 'git@github.com:stanislavcodes/advent-of-code.git'
+    bare: true
+    dest: "{{ personal }}/advent-of-code"
+  tags:
+    - install
+    - dotfiles
+    - personal-project
+  when: advent-of-code.stat.exists == False
