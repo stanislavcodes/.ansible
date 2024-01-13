@@ -8,9 +8,9 @@
     - personal-project
   
 - name: Personal Project Advent Of Code
-  ansible.builtin.git:
+  git:
     repo: 'git@github.com:stanislavcodes/advent-of-code.git'
-    bare: true
+    clone: true
     dest: "{{ personal }}/advent-of-code"
   tags:
     - install
