@@ -17,7 +17,8 @@
     - dotfiles
     - stow
 - name: stow dotfiles
-  shell: cd $HOME/.dotfiles && ./fedora
+  become: true
+  shell: cd {{ lookup('env', 'HOME') }}/.dotfiles && chmod +x ./fedora && ./fedora
   tags:
     - install
     - dotfiles
