@@ -16,19 +16,19 @@
   tasks:
     - name: setup ssh
       include_tasks:
-        file: tasks/ssh.yml
+        file: tasks/1-ssh.yml
     - name: setup git
       include_tasks:
-        file: tasks/git-setup.yml
+        file: tasks/2-git-setup.yml
     - name: setup zsh
       include_tasks:
-        file: tasks/zsh-setup.yml
+        file: tasks/3-zsh-setup.yml
     - name: setup personal projects
       include_tasks:
-        file: tasks/personal-projects.yml
+        file: tasks/4-personal-projects.yml
     - name: setup dotfiles
       include_tasks:
-        file: tasks/dotfiles.yml
+        file: tasks/5-dotfiles.yml
     - name: developer productivity
-      include_tasks:
-        file: tasks/dotfiles.yml
+      # include_tasks:
+      #   file: tasks/5-dotfiles.yml
