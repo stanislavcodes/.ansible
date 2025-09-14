@@ -1,0 +1,25 @@
+- hosts: localhost
+  vars:
+    source_key: './.ssh/id_ed25519'
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    personal: "{{ lookup('env', 'HOME') }}/personal"
+    work: "{{ lookup('env', 'HOME') }}/work"
+  pre_tasks:
+    - name: update dnf
+      become: true
+      dnf:
+        update_cache: true
+        state: present
+      tags:
+        - install
+        - core
+  tasks:
+    - name: setup ssh
+      include_tasks:
+        file: tasks/1-ssh.yml
+    - name: setup git
+      include_tasks:
+        file: tasks/2-git-setup.yml
+    - name: setup zsh
+      include_tasks:
+        file: tasks/3-zsh-setup.yml

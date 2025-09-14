@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+echo "Installing ansible and other programs..."
+sudo dnf install neovim ansible btop -y
+
+echo "Running ansible playbook..."
+ansible-playbook local.yml
