@@ -10,15 +10,16 @@
 
 - name: Add user to docker group
   user:
-    name: '{{ ansible_user }}'
+    name: '{{ username }}'
     groups: docker
     append: yes
+  become: yes
 
 - name: Fix Docker config directory ownership (if exists)
   file:
-    path: '/home/{{ ansible_user }}/.docker'
-    owner: '{{ ansible_user }}'
-    group: '{{ ansible_user }}'
+    path: '/home/{{ username }}/.docker'
+    owner: '{{ username }}'
+    group: '{{ username }}'
     mode: '0755'
     recurse: yes
   ignore_errors: yes
@@ -28,19 +29,13 @@
     name: docker.service
     state: started
     enabled: yes
+  become: yes
 
 - name: Start and enable containerd service
   systemd:
     name: containerd.service
     state: started
     enabled: yes
-
-- name: Test Docker installation
-  command: docker run hello-world
-  become_user: '{{ ansible_user }}'
-  register: docker_test
-  changed_when: false
-  ignore_errors: yes
 
 - name: Display Docker test result
   debug:
