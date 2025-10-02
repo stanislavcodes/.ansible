@@ -23,3 +23,9 @@
     - name: setup zsh
       include_tasks:
         file: tasks/3-zsh-setup.yml
+    - name: install apps
+      include_tasks:
+        file: tasks/4-install-apps.yml
+    - name: install docker
+      include_tasks:
+        file: tasks/5-install-docker.yml

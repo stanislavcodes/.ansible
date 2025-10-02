@@ -1,0 +1,52 @@
+- name: Install Docker using get.docker.com script
+  shell: curl -fsSL https://get.docker.com | sh
+  args:
+    creates: /usr/bin/docker
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  user:
+    name: '{{ ansible_user }}'
+    groups: docker
+    append: yes
+
+- name: Fix Docker config directory ownership (if exists)
+  file:
+    path: '/home/{{ ansible_user }}/.docker'
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
+    mode: '0755'
+    recurse: yes
+  ignore_errors: yes
+
+- name: Start and enable Docker service
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes
+
+- name: Start and enable containerd service
+  systemd:
+    name: containerd.service
+    state: started
+    enabled: yes
+
+- name: Test Docker installation
+  command: docker run hello-world
+  become_user: '{{ ansible_user }}'
+  register: docker_test
+  changed_when: false
+  ignore_errors: yes
+
+- name: Display Docker test result
+  debug:
+    msg: 'Docker test successful!'
+  when: docker_test.rc == 0
+
+- name: Warn about group membership
+  debug:
+    msg: 'Note: You may need to log out and back in for docker group membership to take effect'
