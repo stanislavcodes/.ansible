@@ -1,6 +1,7 @@
 - name: Update dnf cache
   dnf:
     update_cache: yes
+  become: yes
   tags:
     - apps
     - install
@@ -9,6 +10,7 @@
   dnf:
     name: '{{ apps_to_install }}'
     state: present
+  become: yes
   register: install_result
   tags:
     - apps
