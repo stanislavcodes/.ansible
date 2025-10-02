@@ -9,12 +9,12 @@
 
 - name: check that the oh-my-zsh folder exists
   stat:
-    path: /stanislavcodes/.oh-my-zsh
+    path: ~/.oh-my-zsh
   register: oh_my_stats
   tags: *tags_for_zsh_tasks
 
 - name: remove old oh-my-zsh
-  shell: sudo rm -rf /stanislavcodes/.oh-my-zsh
+  shell: sudo rm -rf ~/.oh-my-zsh
   when: oh_my_stats.stat.exists == True
   tags: *tags_for_zsh_tasks
 
