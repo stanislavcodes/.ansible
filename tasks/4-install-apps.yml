@@ -1,28 +1,23 @@
-- name: install apps on Fedora
-  become: yes
-  vars:
-    apps_to_install:
-      - neovim
-      - btop
-      - fastfetch
-      - alacritty
-
+- name: Update dnf cache
+  dnf:
+    update_cache: yes
   tags:
     - apps
     - install
 
-  tasks:
-    - name: Update dnf cache
-      dnf:
-        update_cache: yes
+- name: Install applications
+  dnf:
+    name: '{{ apps_to_install }}'
+    state: present
+  register: install_result
+  tags:
+    - apps
+    - install
 
-    - name: Install applications
-      dnf:
-        name: '{{ apps_to_install }}'
-        state: present
-      register: install_result
-
-    - name: Display installation results
-      debug:
-        msg: 'Successfully installed: {{ install_result.results | length }} packages'
-      when: install_result is succeeded
+- name: Display installation results
+  debug:
+    msg: 'Successfully installed: {{ install_result.results | length }} packages'
+  when: install_result is succeeded
+  tags:
+    - apps
+    - install

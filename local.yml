@@ -23,9 +23,16 @@
     - name: setup zsh
       include_tasks:
         file: tasks/3-zsh-setup.yml
-    - name: install apps
-      include_tasks:
-        file: tasks/4-install-apps.yml
+    - name: install apps on Fedora
+      become: yes
+      vars:
+        apps_to_install:
+          - neovim
+          - btop
+          - fastfetch
+          - alacritty
+      tasks:
+        - import_tasks: tasks/4-install-apps.yml
     - name: install docker
       include_tasks:
         file: tasks/5-install-docker.yml
