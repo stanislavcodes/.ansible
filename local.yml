@@ -5,11 +5,6 @@
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
     personal: "{{ lookup('env', 'HOME') }}/personal"
     work: "{{ lookup('env', 'HOME') }}/work"
-    apps_to_install:
-      - neovim
-      - btop
-      - fastfetch
-      - alacritty
   pre_tasks:
     - name: update dnf
       become: true
@@ -18,7 +13,6 @@
         state: present
       tags:
         - install
-        - core
   tasks:
     - name: setup ssh
       include_tasks:
@@ -29,9 +23,7 @@
     - name: setup zsh
       include_tasks:
         file: tasks/3-zsh-setup.yml
-    - name: install apps on Fedora
+    - name: setup ocker
       include_tasks:
-        file: tasks/4-install-apps.yml
-    - name: install docker
-      include_tasks:
-        file: tasks/5-install-docker.yml
+        file: tasks/4-docker-setup.yml
+
