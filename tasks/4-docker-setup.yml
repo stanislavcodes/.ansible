@@ -37,11 +37,6 @@
     state: started
     enabled: yes
 
-- name: Display Docker test result
-  debug:
-    msg: 'Docker test successful!'
-  when: docker_test.rc == 0
-
 - name: Warn about group membership
   debug:
     msg: 'Note: You may need to log out and back in for docker group membership to take effect'
