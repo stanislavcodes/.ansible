@@ -3,4 +3,4 @@ echo "Installing ansible and other programs..."
 sudo dnf install ansible -y
 
 echo "Running ansible playbook..."
-ansible-playbook local.yml
+ansible-playbook local.yml --ask-vault-pass
